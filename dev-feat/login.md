@@ -1,3 +1,7 @@
+Sure — here’s your full **Markdown (.md)** version of the backend documentation for the **Flutter mobile login with OTP flow** 👇
+
+---
+
 ```markdown
 # 🔐 Login with Mobile Number + OTP (Backend API)
 
@@ -209,3 +213,12 @@ App stores JWT securely → user logged in
 ```
 
 ---
+
+*Document version: 1.0 (Updated: 2025-11-01)*
+
+```
+
+---
+
+Would you like me to generate this as a **downloadable `.md` file** (e.g., `login_api_doc.md`)?
+```
