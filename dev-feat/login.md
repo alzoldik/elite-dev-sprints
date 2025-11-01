@@ -1,7 +1,3 @@
-Sure — here’s your full **Markdown (.md)** version of the backend documentation for the **Flutter mobile login with OTP flow** 👇
-
----
-
 ```markdown
 # 🔐 Login with Mobile Number + OTP (Backend API)
 
@@ -16,7 +12,7 @@ This document describes the backend API used by the **Flutter mobile app** for u
 
 POST /api/auth/send-otp
 
-````
+``
 
 ### **Description**
 Send an OTP code via SMS to a user’s phone for login or registration.
