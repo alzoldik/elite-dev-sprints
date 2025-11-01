@@ -18,8 +18,7 @@ Sends a one-time password (OTP) to the user's mobile number for login or registr
 ```json
 {
   "country_code": "+20",
-  "mobile": "1012345678",
-  "purpose": "login"
+  "mobile": "1012345678"
 }
 ```
 
@@ -35,7 +34,6 @@ Sends a one-time password (OTP) to the user's mobile number for login or registr
   "status": true,
   "message": "OTP sent",
   "data": {
-    "verification_id": "verif_abc123",
     "expires_in": 300
   }
 }
@@ -65,7 +63,6 @@ If valid, logs in the user (and optionally creates an account if it doesn't exis
 ### Request (JSON)
 ```json
 {
-  "verification_id": "verif_abc123",
   "otp_code": "123456",
   "country_code": "+20",
   "mobile": "1012345678",
@@ -75,7 +72,6 @@ If valid, logs in the user (and optionally creates an account if it doesn't exis
 
 | Field | Type | Required | Description |
 |-------|------|-----------|-------------|
-| `verification_id` | string | ✅ | The ID returned from `/send-otp` |
 | `otp_code` | string | ✅ | The OTP entered by the user |
 | `country_code` | string | ✅ | The same code used in send-otp |
 | `mobile` | string | ✅ | User’s phone number |
@@ -92,14 +88,10 @@ If valid, logs in the user (and optionally creates an account if it doesn't exis
       "full_name": "Aly Mohamed",
       "phone": "+201012345678",
       "profile_image": "https://cdn.example.com/uploads/users/12/profile.jpg",
-      "email": "aly@example.com",
       "role": "student",
-      "fcm_token": "abcd1234xyz_fcm_token_here",
       "created_at": "2025-11-01T22:30:00Z"
     },
-    "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refresh_token": "refresh_XXXXX",
-    "token_expires_in": 3600
+    "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
   }
 }
 ```
@@ -109,31 +101,6 @@ If valid, logs in the user (and optionally creates an account if it doesn't exis
 {
   "status": false,
   "message": "Invalid or expired OTP"
-}
-```
-
----
-
-## 3️⃣ Resend OTP
-
-**Endpoint**
-```
-POST /api/auth/resend-otp
-```
-
-### Request
-```json
-{
-  "verification_id": "verif_abc123"
-}
-```
-
-### Success Response
-```json
-{
-  "status": true,
-  "message": "OTP resent",
-  "data": { "expires_in": 300 }
 }
 ```
 
@@ -155,7 +122,6 @@ Authorization: Bearer <jwt_token>
 - OTP expiry: **3–10 minutes** recommended.  
 - Rate limiting: **max 3 attempts per OTP**, **cooldown 60s** for resend.  
 - Store **hashed OTP** with short TTL (never plain text).  
-- Invalidate `verification_id` after successful verification.  
 - Use **HTTPS** and store `jwt_token` securely on mobile (e.g., `flutter_secure_storage`).  
 - Log and monitor suspicious OTP or resend activity.
 
